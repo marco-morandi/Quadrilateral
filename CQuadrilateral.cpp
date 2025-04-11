@@ -28,10 +28,10 @@ Quadrilateral::~Quadrilateral() {
 
 
 /// @brief sets the value of the four sides 
-/// @param s0 side 0 
-/// @param s1 side 1 
-/// @param s2 side 2
-/// @param s3 side 3 
+/// @param s0 side 1
+/// @param s1 side 2 
+/// @param s2 side 3
+/// @param s3 side 4 
 void Quadrilateral::SetSides(float s0, float s1, float s2, float s3) {
 	
 	sides[0] = s0;
@@ -44,10 +44,10 @@ void Quadrilateral::SetSides(float s0, float s1, float s2, float s3) {
 } 
 
 /// @brief sets the value of the four angles
-/// @param a0 angle 0
-/// @param a1 angle 1
-/// @param a2 angle 2
-/// @param a3 angle 3
+/// @param a0 angle 1
+/// @param a1 angle 2
+/// @param a2 angle 3
+/// @param a3 angle 4
 void Quadrilateral::SetAngles(float a0, float a1, float a2, float a3) {
 
 	angles[0] = a0;
@@ -55,7 +55,25 @@ void Quadrilateral::SetAngles(float a0, float a1, float a2, float a3) {
 	angles[2] = a2;
 	angles[3] = a3;
 
+	if (!Check())
+		Reset();
+
 	return;
+}
+
+/// @brief set the grid coordinates
+/// @param Coord struct type object that contains the coordinates
+void Quadrilateral::SetGridCoord(coord_type Coord) {
+
+	if (Coord.x < 0 || Coord.y < 0) {
+		WarningMessage("SetGridCoord - the coordinates cannot be negative");
+		gridCoord.x = 0;
+		gridCoord.y = 0;
+		return;
+	}
+
+	gridCoord.x = Coord.x;
+	gridCoord.y = Coord.y;
 }
 
 /// @brief overload of operator = 
@@ -63,6 +81,8 @@ void Quadrilateral::SetAngles(float a0, float a1, float a2, float a3) {
 /// @return reference to the object on the left side of the operator 
 Quadrilateral& Quadrilateral::operator=(const Quadrilateral &o) { 
 
+	cout << "Quadrilateral - operator =" << endl;
+	Init(o);
 	return *this;
 	
 }
@@ -133,10 +153,10 @@ float Quadrilateral::GetPerimeter() {
 } 
 
 /// @brief get the sides of the object 
-/// @param s0 side 0 
-/// @param s1 side 1
-/// @param s2 side 2
-/// @param s3 side 3 
+/// @param s0 side 1 
+/// @param s1 side 2
+/// @param s2 side 3
+/// @param s3 side 4 
 void Quadrilateral::GetSides(float &s0, float &s1, float &s2, float &s3) {
 
 	s0 = sides[0]; 
@@ -147,10 +167,10 @@ void Quadrilateral::GetSides(float &s0, float &s1, float &s2, float &s3) {
 }
 
 /// @brief get the angles of the object 
-/// @param a0 angle 0 
-/// @param a1 angle 1
-/// @param a2 angle 2
-/// @param a3 angle 3 
+/// @param a0 angle 1
+/// @param a1 angle 2
+/// @param a2 angle 3
+/// @param a3 angle 4 
 void Quadrilateral::GetAngles(float &a0, float &a1, float &a2, float &a3) {
 
 	a0 = angles[0]; 
@@ -190,6 +210,7 @@ void Quadrilateral::WarningMessage(const char *string) {
 void Quadrilateral::Dump() {
 	
 	cout << endl;
+	cout << "Reference point on the grid: " << gridCoord.x << "," << gridCoord.y << endl;
 	cout << "Sides = " << sides[0] << "; " << sides[1] << "; " << sides[2] << "; " << sides[3] << "; " << endl;
 	cout << "Angles = " << angles[0] << "; " << angles[1] << "; " << angles[2] << "; " << angles[3] << "; " << endl;
 	cout << "Perimeter = " << GetPerimeter() << endl;
