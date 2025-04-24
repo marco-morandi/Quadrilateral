@@ -8,8 +8,6 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-#include<iostream>
-
 #include "CQuadrilateral.h"
 
 using namespace std;

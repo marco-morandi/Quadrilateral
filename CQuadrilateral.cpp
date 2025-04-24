@@ -107,8 +107,8 @@ void Quadrilateral::Reset() {
 /// @brief check if the quadrilater is actually a quadrilateral 
 bool Quadrilateral::Check() {
 	if ((angles[0] + angles[1] + angles[2] + angles[3]) != 360.0) {
-	 WarningMessage("Check - the sum of the angles is not 360");
-	 return false;
+		 WarningMessage("Check - the sum of the angles is not 360");
+		 return false;
 	}
 	return true;	
 }
