@@ -178,6 +178,7 @@ void Rectangle::Dump() {
 	cout << "---Rectangle---" << endl; 
 	cout << endl;
 	
+	cout << "Reference point on the grid: (" << gridCoord.x << "," << gridCoord.y << ")\n";
 	cout << "Width = " << sides[0] << endl;
 	cout << "Heigth = " << sides[1] << endl;
 	cout << "Area = " << GetArea() << endl;
